@@ -9,18 +9,55 @@
       function initMap() {
         var amsterdam = {lat: 52.37, lng: 4.89};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
+          zoom: 15,
           center: amsterdam
         });
 
         // Create a Places service to search for mosques in Amsterdam
         var service = new google.maps.places.PlacesService(map);
-        var request = {
-          location: amsterdam,
-          radius: '80000',
-          query: 'mosque'
-        };
-        service.textSearch(request, function(results, status) {
+        var requests = [
+    {
+        location: amsterdam,
+        radius: '80000',
+        query: 'mosque'
+    },
+    {
+        location: amsterdam,
+        radius: '80000',
+        query: 'Masjid'
+    },
+    {
+        location: amsterdam,
+        radius: '80000',
+        query: 'Moskee'
+    },
+    {
+        location: amsterdam,
+        radius: '80000',
+        query: 'Islamic'
+    },
+    {
+        location: amsterdam,
+        radius: '80000',
+        query: 'Islamia'
+    },
+    {
+        location: amsterdam,
+        radius: '80000',
+        query: 'mescid'
+    },
+    {
+        location: amsterdam,
+        radius: '80000',
+        query: 'baitul'
+    },
+    {
+        location: amsterdam,
+        radius: '80000',
+        query: 'quran'
+    }
+]
+requests.forEach(function(request) {service.textSearch(request, function(results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
               var place = results[i];
@@ -48,7 +85,7 @@
             }
           }
         });
-      }
+      })}
     </script>
   </head>
   <body onload="initMap()">
